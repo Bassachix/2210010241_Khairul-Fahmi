@@ -4,6 +4,9 @@
  */
 package restock;
 
+import static crud.Koneksi.koneksidb;
+import java.sql.PreparedStatement;
+
 /**
  *
  * @author USER
@@ -43,6 +46,61 @@ public class supplier {
     }
     public String getAlamat() {
         return this.alamat;
+    }
+    
+    // CRUD
+    public void simpanSupplier(int tempKodeSupplier, String tempNamaSupplier, String tempTelpon, String tempAlamat){
+        try {
+            
+            String sql = "insert into supplier (kode_sup, nama_sup, telpon, alamat) value (?, ?, ?, ?)";
+            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            perintah.setInt(1, tempKodeSupplier);
+            perintah.setString(2, tempNamaSupplier);
+            perintah.setString(3, tempTelpon);
+            perintah.setString(4, tempAlamat);
+            perintah.executeUpdate();
+            System.out.println("Data Supplier Berhasil Disimpan");
+            
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+            
+        }
+    }
+    
+    public void ubahSupplier(int tempKodeSupplier, String tempNamaSupplier, String tempTelpon, String tempAlamat){
+        try {
+            
+            String sql = "update supplier set nama_sup = ?, telpon = ?, alamat = ? where kode_sup = ?";
+            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            perintah.setString(1, tempNamaSupplier);
+            perintah.setString(2, tempTelpon);
+            perintah.setString(3, tempAlamat);
+            perintah.setInt(4, tempKodeSupplier);
+            perintah.executeUpdate();
+            System.out.println("Data Supplier Berhasil Diupdate");
+            
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+            
+        }
+    }
+    
+    public void hapusSupplier(int tempKodeSupplier){
+        try {
+            
+            String sql = "delete from supplier where kode_sup = ?";
+            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            perintah.setInt(1, tempKodeSupplier);
+            perintah.executeUpdate();
+            System.out.println("Data Supplier Berhasil Dihapus");
+            
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+            
+        }
     }
     
 }
