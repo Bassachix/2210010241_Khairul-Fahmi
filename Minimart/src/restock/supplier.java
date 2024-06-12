@@ -3,8 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package restock;
-
-import static crud.Koneksi.koneksidb;
+import crud.Koneksi;
 import java.sql.PreparedStatement;
 
 /**
@@ -13,11 +12,17 @@ import java.sql.PreparedStatement;
  */
 public class supplier {
     
-    //VARIABEL
+    private Koneksi conn;
+    
+    // VARIABEL
     int kodeSup;
     String namaSup, telpon, alamat;
     
-    public supplier(){} //CONSTRUCTOR 
+    public supplier(){
+        if (Koneksi.koneksidb == null) {
+            conn = new Koneksi();            
+        }
+    } //CONSTRUCTOR 
     
     // METHOD
     public void inputKodeSup(int kodeSup) {
@@ -53,7 +58,7 @@ public class supplier {
         try {
             
             String sql = "insert into supplier (kode_sup, nama_sup, telpon, alamat) value (?, ?, ?, ?)";
-            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            PreparedStatement perintah = Koneksi.koneksidb.prepareStatement(sql);
             perintah.setInt(1, tempKodeSupplier);
             perintah.setString(2, tempNamaSupplier);
             perintah.setString(3, tempTelpon);
@@ -72,7 +77,7 @@ public class supplier {
         try {
             
             String sql = "update supplier set nama_sup = ?, telpon = ?, alamat = ? where kode_sup = ?";
-            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            PreparedStatement perintah = Koneksi.koneksidb.prepareStatement(sql);
             perintah.setString(1, tempNamaSupplier);
             perintah.setString(2, tempTelpon);
             perintah.setString(3, tempAlamat);
@@ -91,7 +96,7 @@ public class supplier {
         try {
             
             String sql = "delete from supplier where kode_sup = ?";
-            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            PreparedStatement perintah = Koneksi.koneksidb.prepareStatement(sql);
             perintah.setInt(1, tempKodeSupplier);
             perintah.executeUpdate();
             System.out.println("Data Supplier Berhasil Dihapus");

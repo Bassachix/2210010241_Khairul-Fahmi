@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Project%20Java/Minimart/src/restock/pembelian.java</file>
             <file>file:/D:/Project%20Java/Minimart/src/restock/supplier.java</file>
+            <file>file:/D:/Project%20Java/Minimart/src/GUI/mainFrame.java</file>
             <file>file:/D:/Project%20Java/Minimart/src/restock/barang.java</file>
+            <file>file:/D:/Project%20Java/Minimart/src/GUI/frameBarang.java</file>
             <file>file:/D:/Project%20Java/Minimart/src/crud/Koneksi.java</file>
-            <file>file:/D:/Project%20Java/Minimart/src/restock/penjualan.java</file>
+            <file>file:/D:/Project%20Java/Minimart/src/GUI/frameBelajar.java</file>
             <file>file:/D:/Project%20Java/Minimart/src/minimart/Minimart.java</file>
+            <file>file:/D:/Project%20Java/Minimart/src/GUI/frameSupplier.java</file>
         </group>
     </open-files>
 </project-private>

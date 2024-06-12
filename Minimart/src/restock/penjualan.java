@@ -4,7 +4,7 @@
  */
 package restock;
 
-import static crud.Koneksi.koneksidb;
+import crud.Koneksi;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 
@@ -13,15 +13,21 @@ import java.sql.PreparedStatement;
  * @author USER
  */
 public class penjualan {
+    
+    private Koneksi conn;
 
-    public penjualan(){}
+    public penjualan() {
+        if (Koneksi.koneksidb == null) {
+            conn = new Koneksi();
+        }
+    }
     
     public void simpanPenjualan(int tempNoKeluar, String tempTglKeluarStr, int tempJumlah, int tempTotal, int tempKodeBar, int tempKodePelanggan){
         try {
             
             Date tempTglKeluar = Date.valueOf(tempTglKeluarStr);
             String sql = "insert into penjualan (no_keluar, tgl_keluar, jumlah, total, kode_barang, kode_pelanggan) value (?, ?, ?, ?, ?, ?)";
-            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            PreparedStatement perintah = Koneksi.koneksidb.prepareStatement(sql);
             perintah.setInt(1, tempNoKeluar);
             perintah.setDate(2, tempTglKeluar);
             perintah.setInt(3, tempJumlah);
@@ -43,7 +49,7 @@ public class penjualan {
             
             Date tempTglKeluar = Date.valueOf(tempTglKeluarStr);
             String sql = "update penjualan set tgl_keluar = ?, jumlah = ?, total = ?, kode_barang = ?, kode_pelanggan = ? where no_keluar = ?";
-            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            PreparedStatement perintah = Koneksi.koneksidb.prepareStatement(sql);
             perintah.setDate(1, tempTglKeluar);
             perintah.setInt(2, tempJumlah);
             perintah.setInt(3, tempTotal);
@@ -64,7 +70,7 @@ public class penjualan {
         try {
             
             String sql = "delete from penjualan where no_keluar = ?";
-            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            PreparedStatement perintah = Koneksi.koneksidb.prepareStatement(sql);
             perintah.setInt(1, tempNoKeluar);
             perintah.executeUpdate();
             System.out.println("Data Penjualan Berhasil Dihapus");

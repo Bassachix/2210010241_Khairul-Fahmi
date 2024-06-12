@@ -3,9 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package minimart;
-import crud.Koneksi;
-import restock.*;
+//import crud.Koneksi;
+//import restock.*;
 //import java.util.Scanner;
+import GUI.mainFrame;
 
 /**
  *
@@ -19,16 +20,19 @@ public class Minimart {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        Koneksi crud = new Koneksi();
-        barang crudBarang = new barang();
-        pembelian crudPembelian = new pembelian();
-        penjualan crudPenjualan = new penjualan();
-        supplier crudSupplier = new supplier();
+        new mainFrame().setVisible(true);
         
-        crudBarang.simpanBarang(1234, "Mie Goreng", 10, 5000);
-        crudPembelian.simpanPembelian(1, "2024-06-10", 5551, 1234, 10, 50000);
-        crudPenjualan.simpanPenjualan(1, "2024-06-11", 5, 25000, 1234, 9471);
-        crudSupplier.simpanSupplier(9991, "PT Kacang Berjalan", "085688221723", "Jalan Suka Bumi");
+        
+//        Koneksi crud = new Koneksi();
+//        barang crudBarang = new barang();
+//        pembelian crudPembelian = new pembelian();
+//        penjualan crudPenjualan = new penjualan();
+//        supplier crudSupplier = new supplier();
+//        
+//        crudBarang.simpanBarang(1234, "Mie Goreng", 10, 5000);
+//        crudPembelian.simpanPembelian(1, "2024-06-10", 5551, 1234, 10, 50000);
+//        crudPenjualan.simpanPenjualan(1, "2024-06-11", 5, 25000, 1234, 9471);
+//        crudSupplier.simpanSupplier(9991, "PT Kacang Berjalan", "085688221723", "Jalan Suka Bumi");
         
       
         

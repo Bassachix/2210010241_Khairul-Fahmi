@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package restock;
-import static crud.Koneksi.koneksidb;
+
+import crud.Koneksi;
 import java.sql.PreparedStatement;
 
 /**
@@ -12,11 +13,17 @@ import java.sql.PreparedStatement;
  */
 public class barang extends supplier{
     
-    //VARIABEL
+    private Koneksi conn;
+    
+    // VARIABEL
     int kodeBarang, harga;
     String namaBarang;
     
-    public barang(){}   //CONSTRUCTOR 
+    public barang(){
+        if (Koneksi.koneksidb == null) {
+            conn = new Koneksi();        
+        }
+    }   //CONSTRUCTOR 
     
     // METHOD
     public void inputKodeBarang(int kodeBarang) {
@@ -40,12 +47,12 @@ public class barang extends supplier{
         return this.harga;
     }
     
-    // CRUD
+    // CRUD  
     public void simpanBarang(int tempKodeBarang, String tempNamaBarang, int tempStok, int tempHarga){
         try {
             
             String sql = "insert into barang (kode_barang, nama_barang, stok, harga) value (?, ?, ?, ?)";
-            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            PreparedStatement perintah = Koneksi.koneksidb.prepareStatement(sql);
             perintah.setInt(1, tempKodeBarang);
             perintah.setString(2, tempNamaBarang);
             perintah.setInt(3, tempStok);
@@ -64,7 +71,7 @@ public class barang extends supplier{
         try {
             
             String sql = "update barang set nama_barang = ?, stok = ?, harga = ? where kode_barang = ?";
-            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            PreparedStatement perintah = Koneksi.koneksidb.prepareStatement(sql);
             perintah.setString(1, tempNamaBarang);
             perintah.setInt(2, tempStok);
             perintah.setInt(3, tempHarga);
@@ -83,7 +90,7 @@ public class barang extends supplier{
         try {
             
             String sql = "delete from barang where kode_barang = ?";
-            PreparedStatement perintah = koneksidb.prepareStatement(sql);
+            PreparedStatement perintah = Koneksi.koneksidb.prepareStatement(sql);
             perintah.setInt(1, tempKodeBarang);
             perintah.executeUpdate();
             System.out.println("Data Barang Berhasil Dihapus");
